@@ -1,5 +1,7 @@
-const HEAD = (
+const BODY_PARTS = [
+  // Each body part corresponds to a wrong guess
   <div
+    key="head"
     style={{
       width: "50px",
       height: "50px",
@@ -9,11 +11,9 @@ const HEAD = (
       top: "50px",
       right: "-30px",
     }}
-  />
-);
-
-const BODY = (
+  />,
   <div
+    key="body"
     style={{
       width: "10px",
       height: "100px",
@@ -23,11 +23,9 @@ const BODY = (
       top: "120px",
       right: "0",
     }}
-  />
-);
-
-const RIGHTARM = (
+  />,
   <div
+    key="right-arm"
     style={{
       width: "100px",
       height: "10px",
@@ -39,11 +37,9 @@ const RIGHTARM = (
       rotate: "-30deg",
       transformOrigin: "left bottom",
     }}
-  />
-);
-
-const LEFTARM = (
+  />,
   <div
+    key="left-arm"
     style={{
       width: "100px",
       height: "10px",
@@ -55,11 +51,9 @@ const LEFTARM = (
       rotate: "30deg",
       transformOrigin: "right bottom",
     }}
-  />
-);
-
-const RIGHT_LEG = (
+  />,
   <div
+    key="right-leg"
     style={{
       width: "100px",
       height: "10px",
@@ -71,11 +65,9 @@ const RIGHT_LEG = (
       rotate: "60deg",
       transformOrigin: "left bottom",
     }}
-  />
-);
-
-const LEFT_LEG = (
+  />,
   <div
+    key="left-leg"
     style={{
       width: "100px",
       height: "10px",
@@ -83,26 +75,26 @@ const LEFT_LEG = (
       borderRadius: "100%",
       position: "absolute",
       top: "210px",
-      right: 0,
+      right: "0",
       rotate: "-60deg",
       transformOrigin: "right bottom",
     }}
-  />
-);
+  />,
+];
 
-export function HangmanDrawing() {
+interface HangmanDrawingProps {
+  numberOfGuesses: number;
+}
+
+export function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
   return (
     <div
       style={{
         position: "relative",
       }}
     >
-      {HEAD}
-      {BODY}
-      {RIGHTARM}
-      {LEFTARM}
-      {RIGHT_LEG}
-      {LEFT_LEG}
+      {/* Dynamically render the body parts based on incorrect guesses */}
+      {BODY_PARTS.slice(0, numberOfGuesses)}
       <div
         style={{
           height: "50px",
